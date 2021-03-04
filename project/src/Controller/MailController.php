@@ -11,6 +11,12 @@ use Symfony\Component\Routing\Annotation\Route;
 class MailController extends AbstractController
 {
     /**
+     * @Route("/co", name="User connection page")
+     */
+    public function connection(){
+        return $this->render('UserConnectionPage.html.twig', array());
+    }
+    /**
      * @Route("/mail", name="mail")
      */
     public function index(MailerInterface $mailer): Response
