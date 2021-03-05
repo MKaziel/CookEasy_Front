@@ -13,7 +13,7 @@ class DefaultController extends AbstractController
      * @Route("/co", name="User connection page")
      */
     public function page_connection(){
-        return $this->render('UserConnectionPage.html.twig', array());
+        return $this->render('connexion/UserConnectionPage.html.twig', array());
     }
 
     /**
@@ -39,11 +39,11 @@ class DefaultController extends AbstractController
         if($response->getStatusCode() === 200){
             //Execution quand un utilisateur a réussi à se connecter
             echo("Réussi");
-            return $this->render('UserConnectionPage.html.twig', array());
+            return $this->render('connexion/UserConnectionPage.html.twig', array());
         } else {
             //Execution quand la connexion a échoué
             echo("Loupé");
-            return $this->render('UserConnectionPage.html.twig', array());
+            return $this->render('connexion/UserConnectionPage.html.twig', array());
         }
     }
 }

@@ -9,13 +9,7 @@ use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Annotation\Route;
  
 class MailController extends AbstractController
-{
-    /**
-     * @Route("/co", name="User connection page")
-     */
-    public function connection(){
-        return $this->render('UserConnectionPage.html.twig', array());
-    }
+{  
     /**
      * @Route("/mail", name="mail")
      */
