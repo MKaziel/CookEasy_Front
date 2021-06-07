@@ -7,6 +7,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpClient\HttpClient;
 
+use function PHPSTORM_META\type;
+
 class DefaultController extends AbstractController
 {
     /**
@@ -36,14 +38,24 @@ class DefaultController extends AbstractController
             ]
         ]);
 
+        $content = json_decode($response->getContent(),true);
+
         if($response->getStatusCode() === 200){
             //Execution quand un utilisateur a réussi à se connecter
-            echo("Réussi");
-            return $this->render('connexion/UserConnectionPage.html.twig', array());
+            setcookie('login', $content["userLogin"], time() + 365243600, null, null, false, true);
+            setcookie('token', $content["userToken"], time() + 365243600, null, null, false, true);
+            return $this->redirectToRoute("Accueil");
         } else {
             //Execution quand la connexion a échoué
             echo("Loupé");
             return $this->render('connexion/UserConnectionPage.html.twig', array());
         }
+    }
+
+    /**
+     * @Route("/accueil", name="Accueil")
+     */
+    public function accueil() {
+        return $this->render('page_accueil/accueil.html.twig', array());
     }
 }
