@@ -11,7 +11,7 @@ body {
   border: 1px solid #9C9C9C;
   background-color: #DDFFBC;
 }
-#login .container #login-row #login-column #login-box #login-form {
+#login .container #login-row #login-column #login-box #login-form .login-form {
   padding: 20px;
 }
 #login .container #login-row #login-column #login-box #login-form #register-link {

@@ -18,9 +18,25 @@
     <header class="header" id="header">
         <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div>
 
-        <div class="header_toggle"> 
-        {# <span class="nav_name">Profil</span>  #}
-<button type="button" class="btn btn-outline-success"> <i class='bx bx-user nav_icon' id="header-toggle"></i>  Profil</button>
+<header>    
+    <div class="navbar">
+        <div>
+            <a href="{{ path('Accueil') }}">Accueil</a>
+        </div>
+        <div>
+            <a href="{{ path('Recipes page') }}">Recette</a>
+        </div>
+        <div>
+            <a href="{{ path('Social page') }}">Social</a>
+        </div>
+        <div>
+            <a href="{{ path('User profil page') }}">Profil</a>
+        </div>
+        <div>
+            <a href="{{ path('User deconnection system') }}">Déconnexion</a>
+        </div>
+        <div>
+            <input type="text" name="search" id="search" placeholder="Search">
         </div>
 
          <div class="header_toggle"> 
