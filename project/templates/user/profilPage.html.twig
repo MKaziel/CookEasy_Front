@@ -10,10 +10,54 @@
 {% block javascripts %}{% endblock %}
 
 {% block body %}
-	<div class="container">
-        <h1>Bienvenue</h1>     
-        <p>
-            Vous êtes sur votre page de profil !
+	<div class="container-fluid">
+        <div class="row">
+            <input type="button" name="changeFilter" value="Recettes"/>
+        </div>
+        <div class="row">
+            <div class="col-sm-1"></div>
+            <div name="filActus" class="col-sm-8">
+                <h2>Fil d'actualités du profil</h2>
+            </div>
+            <div class="col-sm-2">
+                <div name="infosProfil" class="row">
+                    <form>
+                        <h2 class="text-center">Mes informations</h2>
+                        <br>
+                        <div>
+                            <label>Nom / Prénom</label>
+                            <input id="" name="" class="" type="text"  disabled />
+                        </div>
+                        <br><hr>
+                        <div >
+                            <label>Mail</label>
+                            <input id="" name="" class="" type="email"  disabled />
+                        </div>
+                        <br><hr>
+                        <div >
+                            <label>Date Anniversaire</label>
+                            <input id="" name="" class="" type="date"  disabled />
+                        </div>
+                        <br><hr>
+                        <div >
+                            <label>Nombre de Publications</label>
+                            <input id="" name="" class="" type="number"  disabled />
+                        </div>
+                        <br><hr>
+                        <div >
+                            <label>Type de profil</label>
+                            <select id="typeProfil" name="typeProfil" >
+                                <option>Public</option>
+                                <option>Privé</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div name="amis" class="row">
+                    <h2>Mes amis</h2>
+                </div>
+            </div>
+        </div>
     </div>
 {% endblock %}
 

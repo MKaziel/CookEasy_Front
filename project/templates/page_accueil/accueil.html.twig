@@ -1,20 +1,47 @@
 {% extends 'base.html.twig' %}
 
 {% block stylesheets %}
-	<link rel="stylesheet" href="{{ asset('test.css') }}">
-	<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-	<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet" href="{{ asset('test.css') }}">
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 {% endblock %}
 
 {% block javascripts %}
 {% endblock %}
 
 {% block body %}
-	<div class="container">
-		<h1>Bienvenue</h1>
-		<p>
-			Vous êtes sur la page d'accueil ! le file d'actualité est en cours de développement.
-		</p>
+<div class="container-fluid">
+	<h1>Bienvenue</h1>
+	<p>
+		Vous êtes sur la page d'accueil ! le file d'actualité est en cours de développement.
+	</p>
+
+	<div class="row">
+		<div name="publicAmis" class="col-sm">
+			<h1>Publication Récentes des Amis</h1>
+		</div>
+		<div name="filActus" class="col-sm">
+			<h1>Fil d'Actualités</h1>
+			<div id="testCard" name="testCard" class="row testCard">
+				<div class="col-sm">
+					<div class="row"> photo </div>
+					<div class="row"> 
+						<button class="col-sm">J'aime</button>
+						<button class="col-sm">Partager</button>
+						<button class="col-sm">Commenter</button>
+					</div>
+				</div>
+
+				<div class="col-sm">
+					commentaire
+				</div>
+			</div>
+		</div>
+		<div name="suggest" class="col-sm">
+			<h1>Suggestions</h1>
+		</div>
 	</div>
+</div>
+
 {% endblock %}

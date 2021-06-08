@@ -12,9 +12,47 @@
 
 {% block body %}
 	<div class="container">
-		<h1>Bienvenue sur l'onget social</h1>
-		<p>
-			Vous êtes sur la page sociale ! Elle vous permettra de trouver vos amis avec sa fonction de recherche ou bien de vous en faire de nouveau avec les suggestions.
-		</p>
+		<h1 class="text-center">Résultat de la Recherche</h1>
+		<div class="row">
+			<div name="personnes" class="col-sm">
+				<h2 class="text-center">Personnes</h2>
+				<div name="personneRecherche" class="row">
+					<div id="testCardPersonne" name="testCard" class="row testCard">
+						<div class="col-sm">
+							photo
+						</div>
+
+						<div class="col-sm">
+							Info personne
+						</div>
+
+						<div class="col-sm"> 
+							<button class="row">Profil</button>
+							<button class="row">Recettes</button>
+							<button class="row">Ami</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div name="publications" class="col-sm">
+				<h2 class="text-center">Publications</h2>
+				<div name="recetteRecherche" class="row">
+					<div id="testCardRecette" name="testCard" class="row testCard">
+						<div class="col-sm">
+							photo
+						</div>
+
+						<div class="col-sm">
+							Info Recette
+						</div>
+
+						<div class="col-sm"> 
+							<button class="row">Propriétaire</button>
+							<button class="row">Détails</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 {% endblock %}
