@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{ asset('test.css') }}">
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+{% endblock %}
+
+{% block javascripts %}
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<h1>Bienvenue sur la page des recettes</h1>
+		<p>
+			Ici vous poourrez consulter les recettes les plus consultées. Vous pourrez aussi effectuer une recherche pour trouver la recette qui vous ferra le plus envie.
+		</p>
+		<div name="FormulaireRecette" class="row">
+			<form>
+				<h3>Nouvelle recette</h3>
+				<br/>
+				<label for="nomRecette">Nom de la recette :</label>
+				<input id="nomRecette" name="nomRecette" type="text" placeholder="ex: Salade de pâte, gâteau au chocolat, etc ..."/>
+				<br/>
+				<label for="">Difficulté de la recette :</label>
+				<select id="diffRecette" name="diffRecette" type="diffRecette">
+					<option>Débutant</option>
+					<option>Facile</option>
+					<option>Moyenne</option>
+					<option>Avancée</option>
+					<option>Difficile</option>
+					<option>Chef 5 étoiles</option>
+				</select>
+				<br/>
+				<label for="tpsPrepa">Temps de préparation :</label>
+				<input id="tpsPrepa" name="tpsPrepa" type="number" placeholder="Donnez un chiffre en minutes, ex: 80"/>
+				<br/>
+				<br/>
+				<label for="tpsCuisson">Temps de cuisson :</label>
+				<input id="tpsCuisson" name="tpsCuisson" type="number" placeholder="Donnez un chiffre en minutes, ex: 45"/>
+				<br/>
+				<div>
+					<p>Faire une liste pour gérer les ingrédient</p>
+				</div>
+				<br/>
+				<label for="indicRecette">Indication sur la préparation :</label>
+				<textarea id="indicRecette" name="indicRecette" placeholder="Donnez un chiffre en minutes, ex: 45"></textarea>
+				<br/>
+				<button id="annuler" name="annuler">Annuler</button>
+				<input type="submit" value="Valider la recette"/>
+			</form>
+		</div>
+	</div>
+{% endblock %}
