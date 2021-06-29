@@ -17,8 +17,20 @@
                             <body id="body-pd">
     <header class="header" id="header">
         <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div>
+        <div class="header_toggle"> 
+        {# <span class="nav_name">Profil</span>  #}
+<a href="{{ path('User profil page') }}" type="button" class="btn btn-outline-success"> <i class='bx bx-user nav_icon' id="header-toggle"></i>  Profil</a>
+</div>
+     <div class="header_toggle"> 
+         <div class="input-group rounded">
+    <input type="text" name="search" id="search" class="form-control" placeholder="Search"/>
+    <button type="button" class="btn btn-success">
+    <i class='bx bx-search-alt'></i>
+  </button>
+         </div>
+         </div>
 
-<header>    
+{# <header>    
     <div class="navbar">
         <div>
             <a href="{{ path('Accueil') }}">Accueil</a>
@@ -37,16 +49,9 @@
         </div>
         <div>
             <input type="text" name="search" id="search" placeholder="Search">
-        </div>
+        </div> #}
 
-         <div class="header_toggle"> 
-         <div class="input-group rounded">
-    <input type="search" id="form1" class="form-control" />
-    <button type="button" class="btn btn-success">
-    <i class='bx bx-search-alt'></i>
-  </button>
-         </div>
-         </div>
+    
 
     </header>
 <div class="container-fluid">
@@ -59,24 +64,24 @@
             <span class="nav_logo-name">CookEasy</span> 
             </a>
                 <div class="nav_list"> 
-                <a href="#" class="nav_link active"> 
+                <a href="{{ path('Accueil') }}" class="nav_link active"> 
                 <i class='bx bx-grid-alt nav_icon'></i> 
                 <strong class="nav_name">Accueil</strong> 
                 </a>
                 
-                  <a href="#" class="nav_link"> 
+                  <a href="{{ path('Recipes page') }}" class="nav_link"> 
                   <i class='bx bx-restaurant'></i>
                    <strong class="nav_name">Recettes</strong> 
                    </a>
 
-                    <a href="#" class="nav_link"> 
+                    <a href="{{ path('Social page') }}" class="nav_link"> 
                     <i class='bx bx-group'></i>
                   <strong class="nav_name">Social</strong> 
                   </a> 
                     
                  </div>
             </div> 
-            <a href="#" class="nav_link"> 
+            <a href="{{ path('User deconnection system') }}" class="nav_link"> 
             <i class='bx bx-log-out nav_icon'></i> 
             <strong class="nav_name">Se déconnecter</strong>
              </a>

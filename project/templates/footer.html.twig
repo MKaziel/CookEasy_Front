@@ -1,12 +1,68 @@
-{% block stylesheets%}
-	<link rel="stylesheet" href="{{ asset('css/footer.css') }}"/>
-{% endblock %}
-<footer class="footer">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12">
-				Test
-			</div>
+{# <footer>
+    <div>
+        <h3>
+            About us
+            <hr>
+        </h3>
+    </div>
+
+    <div>
+        <h3>
+            Contact
+            <hr>
+        </h3>
+    </div>
+
+</footer> #}
+
+{# <!DOCTYPE html>
+<html>
+	<head>
+		{% block stylesheets%}
+			<link rel="stylesheet" href="{{ asset('css/footer.css') }}"/>
+		{% endblock %}
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	</head>
+	<body>
+
+
+		<div class="footer">
+			<footer>
+    <div>
+        <h5>
+            About us
+            <hr>
+        </h5>
+		   <h5>
+            Contact
+            <hr>
+        </h5>
+    </div>
+
+</footer>
 		</div>
+
+	</body>
+</html> #}
+
+{% block stylesheets%}
+			<link rel="stylesheet" href="{{ asset('css/footer.css') }}"/>
+		{% endblock %}
+<div class="footer">
+<div class="footer-dark">
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6 col-md-3 item">
+                        <h3>About us</h3>
+                    </div>
+                    <div class="col-sm-6 col-md-3 item">
+                        <h3>Contact</h3>
+                    </div>
+                  
+                </div>
+            </div>
+        </footer>
+    </div>
 	</div>
-</footer></body></html>
