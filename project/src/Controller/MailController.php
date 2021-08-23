@@ -9,7 +9,7 @@ use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Annotation\Route;
  
 class MailController extends AbstractController
-{
+{  
     /**
      * @Route("/mail", name="mail")
      */
