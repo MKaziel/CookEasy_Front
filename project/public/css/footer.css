@@ -6,6 +6,7 @@
     background-color: #fff;
     color: #000;
     text-align: center;
+    
  }
 
  .footer-dark {
@@ -56,6 +57,7 @@
     .footer-dark .item.social {
       text-align:center;
       margin-top:20px;
+      
     }
   }
   

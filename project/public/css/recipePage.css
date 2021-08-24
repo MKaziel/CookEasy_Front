@@ -1,10 +1,11 @@
 body {
   color: #000;
+  background-color: #DDFFBC;
   overflow-x: hidden;
   height: 100%;
-  background-image: url("https://i.imgur.com/GMmCQHC.png");
   background-repeat: no-repeat;
-  background-size: 100% 100%
+  background-size: 100% 100%;
+  margin-top: 80px;
 }
 
 .card {
@@ -13,6 +14,10 @@ body {
   margin-bottom: 60px;
   border: none !important;
   box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.2)
+}
+
+.title {
+  margin-top: 100px;
 }
 
 .blue-text {
@@ -28,7 +33,7 @@ textarea,
 button {
   padding: 8px 15px;
   border-radius: 5px !important;
-  margin: 5px 0px;
+  margin: 5px 0;
   box-sizing: border-box;
   border: 1px solid #ccc;
   font-size: 18px !important;
@@ -64,54 +69,72 @@ button:focus {
   outline-width: 0
 }
 
-.login-show input[type="submit"] {
+.valider-show input[type="text"] {
+  width: 100%;
+  display: block;
+  margin: 20px 0;
+  padding: 15px;
+  border: 1px solid #b5b5b5;
+  outline: none;
+}
+
+.annuler-show input[type="text"] {
+  width: 100%;
+  display: block;
+  margin: 20px 0;
+  padding: 15px;
+  border: 1px solid #b5b5b5;
+  outline: none;
+}
+
+.valider-show input[type="submit"] {
   position: relative;
   display: inline-block;
   padding: 10px 20px;
   color: #fff;
-  font-size: 16px;
+  font-size: 14px;
   float: right;
   text-decoration: none;
   text-transform: uppercase;
   overflow: hidden;
   background-color: #444444;
-  transition: .5s;
+  transition: 0.5s;
   margin-top: 40px;
   letter-spacing: 4px;
   max-width: 150px;
-    width: 100%;
+  width: 100%;
 }
-.login-show a{
-    display:inline-block;
-    padding:10px 0;
+.valider-show a {
+  display: inline-block;
+  padding: 10px 0;
 }
 
-.login-show input[type="submit"]:hover {
+.valider-show input[type="submit"]:hover {
   background: #FC8B2A;
   color: #fff;
   border-radius: 5px;
 }
 
 
-.register-show input[type="button"] {
+.annuler-show input[type="button"] {
   position: relative;
   display: inline-block;
   padding: 10px 20px;
   color: #fff;
   font-size: 16px;
-  float: right;
+  float: left;
   text-decoration: none;
   text-transform: uppercase;
   overflow: hidden;
   background-color: #444444;
-  transition: .5s;
+  transition: 0.5s;
   margin-top: 40px;
   letter-spacing: 4px;
   max-width: 150px;
-    width: 100%;
+  width: 100%;
 }
 
-.register-show input[type="button"]:hover {
+.annuler-show input[type="button"]:hover {
   background: #FC8B2A;
   color: #fff;
   border-radius: 5px;
