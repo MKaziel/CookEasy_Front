@@ -90,6 +90,47 @@ flag = flag1 && flag2 && flag3 && flag4 && flag5 && flag6;
 return flag;
 }
 	</script>
+
+	<script>
+		var baseUrl = "http://localhost:3000/"
+
+        function getCookie(name) {
+            let cookie = {};
+            document.cookie.split(';').forEach(function (el) {
+            let [k, v] = el.split('=');
+            cookie[k.trim()] = v;
+            })
+            return cookie[name];
+        }
+
+        function alimentationProfile(elmnt = {}){
+            if(elmnt){
+                if(elmnt.nom && elmnt.prenom)
+                    document.getElementById("nomPrenom").value = `${elmnt.nom} ${elmnt.prenom}`
+                if(elmnt.email)
+                    document.getElementById("email").value = elmnt.email
+                if(elmnt.date_naissance)
+                    document.getElementById("anniv").value = elmnt.date_naissance
+            } else {
+                console.log("Aucune info");
+            }
+        }
+
+        $('document').ready(() => {
+            $.ajax({
+                url: baseUrl + "user/" + getCookie("login_cookeasy"),
+                headers:{
+                    'token': getCookie("token_cookeasy")
+                },
+                dataType: "json",
+                success: (function(data){
+                    elmnt = data.data
+                    console.log(elmnt)
+                    alimentationProfile(elmnt);
+                })
+            })
+        })
+	</script>
 {% endblock %}
 
 {% block body %}
@@ -119,16 +160,16 @@ return flag;
 											<label class="form-control-label px-3">Nom / Prénom
 
 											</label>
-											<input type="text" id="" name="" placeholder="" onblur="" disabled>
+											<input type="text" id="nomPrenom" name="" placeholder="" onblur="" disabled>
 
 											<label class="form-control-label px-3">Email
 
 											</label>
-											<input type="text" id="" name="" placeholder="" onblur="" disabled>
+											<input type="text" id="email" name="" placeholder="" onblur="" disabled>
 											<label class="form-control-label px-3">Anniversaire
 
 											</label>
-											<input type="date" id="" name="" placeholder="" onblur="" disabled>
+											<input type="date" id="anniv" name="" placeholder="" onblur="" disabled>
 
 											<label class="form-control-label px-3">Nombre de Publications
 
