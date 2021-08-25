@@ -93,16 +93,7 @@ return flag;
 
 	<script>
 		var baseUrl = "http://localhost:3000/"
-
-        function getCookie(name) {
-            let cookie = {};
-            document.cookie.split(';').forEach(function (el) {
-            let [k, v] = el.split('=');
-            cookie[k.trim()] = v;
-            })
-            return cookie[name];
-        }
-
+		
         function alimentationProfile(elmnt = {}){
             if(elmnt){
                 if(elmnt.nom && elmnt.prenom)
@@ -115,6 +106,17 @@ return flag;
                 console.log("Aucune info");
             }
         }
+
+		function btnModifInfo(){
+			document.getElementById("nomPrenom").disabled? document.getElementById("nomPrenom").disabled = false : document.getElementById("nomPrenom").disabled = true
+			document.getElementById("email").disabled? document.getElementById("email").disabled = false : document.getElementById("email").disabled = true
+			document.getElementById("anniv").disabled? document.getElementById("anniv").disabled = false : document.getElementById("anniv").disabled = true
+			document.getElementById("btnModifInfo").textContent.includes("Modifier")?document.getElementById("btnModifInfo").textContent="Valider":document.getElementById("btnModifInfo").textContent="Modifier"
+		}
+
+		function sendNewInfoProfile(baseInfo = {}){
+
+		}
 
         $('document').ready(() => {
             $.ajax({
@@ -129,6 +131,15 @@ return flag;
                     alimentationProfile(elmnt);
                 })
             })
+
+			$("#btnModifInfo").click(()=>{
+				if(document.getElementById("btnModifInfo").textContent.includes("Valider")){
+
+				}
+				else if(document.getElementById("btnModifInfo").textContent.includes("Modifier")){
+
+				}
+			})
         })
 	</script>
 {% endblock %}
@@ -184,6 +195,7 @@ return flag;
 											</select>
 
 										</form>
+										<button id="btnModifInfo">Modifier</button>
 									</div>
 									{# </div> #}
 								</div>
