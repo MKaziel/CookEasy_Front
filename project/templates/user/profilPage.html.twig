@@ -114,12 +114,50 @@ return flag;
 			document.getElementById("btnModifInfo").textContent.includes("Modifier")?document.getElementById("btnModifInfo").textContent="Valider":document.getElementById("btnModifInfo").textContent="Modifier"
 		}
 
-		function sendNewInfoProfile(baseInfo = {}){
+		function sendNewInfoProfile(baseInfo = []){
+			let newInfo = []
+			let length = 0
+			if(`${baseInfo["nom"]} ${baseInfo["prenom"]}` != document.getElementById("nomPrenom").value){
+				var nomPrenom = document.getElementById("nomPrenom").value.split(" ")
+				newInfo["nom"] = nomPrenom.slice(0,-1).join(" ")
+				newInfo["prenom"] = nomPrenom[nomPrenom.length -1]
+				length += 2
+			}
+			if(baseInfo["email"] != document.getElementById("email").value){
+				newInfo["email"] = document.getElementById("email").value
+				length += 1
+			}
+			if(baseInfo["date_naissance"] != document.getElementById("anniv").value){
+				newInfo["date_naissance"] = document.getElementById("anniv").value
+				length += 1
+			}
 
+			if(newInfo && length > 0){
+				$.ajax({
+					url: baseUrl + "users/" + getCookie("login_cookeasy"),
+					headers:{
+						'token': getCookie("token_cookeasy")
+					},
+					type: "put",
+					data: {
+						nom: newInfo["nom"],
+						prenom: newInfo["prenom"],
+						email: newInfo["email"],
+						date_naissance: newInfo["date_naissance"],
+					},
+					success:(function(data){
+							alimentationProfile(data.data)
+					})
+				})
+			}
+
+			btnModifInfo()
 		}
 
         $('document').ready(() => {
-            $.ajax({
+			var baseInfo = []
+            
+			$.ajax({
                 url: baseUrl + "user/" + getCookie("login_cookeasy"),
                 headers:{
                     'token': getCookie("token_cookeasy")
@@ -133,12 +171,20 @@ return flag;
             })
 
 			$("#btnModifInfo").click(()=>{
-				if(document.getElementById("btnModifInfo").textContent.includes("Valider")){
+				var nomPrenom = document.getElementById("nomPrenom").value.split(" ")
 
+				
+				if(document.getElementById("btnModifInfo").textContent.includes("Valider")){
+					sendNewInfoProfile(baseInfo)
 				}
 				else if(document.getElementById("btnModifInfo").textContent.includes("Modifier")){
-
+					btnModifInfo()
 				}
+				
+				baseInfo["nom"] = nomPrenom.slice(0,-1).join(" ")
+				baseInfo["prenom"] = nomPrenom[nomPrenom.length -1]
+				baseInfo["email"] = document.getElementById("email").value
+				baseInfo["date_naissance"] = document.getElementById("anniv").value
 			})
         })
 	</script>
