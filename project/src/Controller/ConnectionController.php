@@ -14,8 +14,8 @@ class ConnectionController extends AbstractController
 
     function userConnected()
     {
-        $login = isset($_COOKIE['login']) ? $_COOKIE['login'] : null;
-        $token = isset($_COOKIE['token']) ? $_COOKIE['token'] : null;
+        $login = isset($_COOKIE['login_cookeasy']) ? $_COOKIE['login_cookeasy'] : null;
+        $token = isset($_COOKIE['token_cookeasy']) ? $_COOKIE['token_cookeasy'] : null;
 
         if ($login && $token) {
             return true;
@@ -29,12 +29,12 @@ class ConnectionController extends AbstractController
     */
     function userDisconnected()
     {
-        $login = isset($_COOKIE['login']) ? $_COOKIE['login'] : null;
-        $token = isset($_COOKIE['token']) ? $_COOKIE['token'] : null;
+        $login = isset($_COOKIE['login_cookeasy']) ? $_COOKIE['login_cookeasy'] : null;
+        $token = isset($_COOKIE['token_cookeasy']) ? $_COOKIE['token_cookeasy'] : null;
 
         if (($login && $token) || $login || $token) {
-            setcookie('login', null, time() - 365243600, '/', null, false, false);
-            setcookie('token', null, time() - 365243600, '/', null, false, false);
+            setcookie('login_cookeasy', null, time() - 365243600, '/', null, false, false);
+            setcookie('token_cookeasy', null, time() - 365243600, '/', null, false, false);
             return $this->redirectToRoute('User connection page');
         } else {
             return false;
@@ -82,8 +82,8 @@ class ConnectionController extends AbstractController
         if ($response->getStatusCode() === 200) {
             //Execution quand un utilisateur a réussi à se connecter
             $content = json_decode($response->getContent(), true);
-            setcookie('login', $content["userLogin"], time() + 365243600, '/', null, false, false);
-            setcookie('token', $content["userToken"], time() + 365243600, '/', null, false, false);
+            setcookie('login_cookeasy', $content["userLogin"], time() + 365243600, '/', null, false, false);
+            setcookie('token_cookeasy', $content["userToken"], time() + 365243600, '/', null, false, false);
             return $this->redirectToRoute("Accueil");
         } else {
             //Execution quand la connexion a échoué
