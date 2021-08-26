@@ -107,7 +107,7 @@
 				success: (function (data) {
 					console.log(data);
 					var body = document.getElementById("conteneur");
-					var posts = data
+					var posts = data.reverse()
 			
 					for(var i=0; i<posts.length; i++){
 						let post = posts[i]
@@ -153,7 +153,7 @@
 				success: (function (data) {
 					console.log(data);
 					var body = document.getElementById("conteneur");
-					var posts = data
+					var posts = data.reverse()
 			
 					for(var i=0; i<posts.length; i++){
 						let post = posts[i]

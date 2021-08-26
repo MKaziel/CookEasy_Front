@@ -184,7 +184,7 @@ return flag;
 				success: (function (data) {
 					console.log(data);
 					var body = document.getElementById("conteneur");
-					var posts = data
+					var posts = data.reverse()
 			
 					for(var i=0; i<posts.length; i++){
 						let post = posts[i]
@@ -229,7 +229,7 @@ return flag;
 				success: (function (data) {
 					console.log(data);
 					var body = document.getElementById("conteneur");
-					var posts = data
+					var posts = data.reverse()
 			
 					for(var i=0; i<posts.length; i++){
 						let post = posts[i]
