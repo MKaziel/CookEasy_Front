@@ -19,7 +19,7 @@
 
 {% block javascripts %}
 <script>
-		function searchPeople( search = "") {
+		function searchPeople( search ) {
 			$.ajax({
                 url: "http://localhost:3000/user/" + search,
                 headers:{
@@ -31,7 +31,7 @@
 					var body = document.getElementById("conteneur_profile");
 					var posts = data.data
 
-					if(Array.isArray(posts)){
+					if(posts && Array.isArray(posts)){
 						for(var i=0; i<posts.length; i++){
 							let post = posts[i]
 							var div = document.createElement("div")
@@ -64,7 +64,7 @@
 							`
 							body.appendChild(div)
 						}
-					} else {
+					} else if (posts) {
 						let post = posts
 						var div = document.createElement("div")
 						div.setAttribute("class", "row testCard")
@@ -100,7 +100,7 @@
             })
 		}
 
-		function searchPost(search = ""){
+		function searchPost(search){
 			$.ajax({
 				dataType:"json",
 				url: "http://localhost:3000/userpost/" + search,
@@ -146,7 +146,7 @@
 			})
 		}
 
-		function searchRecette(search = ""){
+		function searchRecette(search){
 			$.ajax({
 				dataType:"json",
 				url: "http://localhost:3000/userrecette/" + search,
@@ -215,9 +215,13 @@
 		function search(){
 			console.log("click");
 			let search = document.getElementById("searchHere").value
-			searchPeople(search)
-			searchPost(search)
-			searchRecette(search)
+			document.getElementById("conteneur").textContent = ""
+			document.getElementById("conteneur_profile").textContent="";
+			if (search != ""){
+				searchPeople(search)
+				searchPost(search)
+				searchRecette(search)
+			}
 		}
 
 		$('document').ready(()=>{
@@ -239,9 +243,11 @@
 
 {% block body %}
 	<div class="container">
-		<div>
-			<input type="text" name="searchHere" id="searchHere"/>
-			<button id="btnSearchHere" type="button" class="btn btn-success"></button>
+		<div class="input-group rounded">
+			<input type="text" name="search" id="searchHere" class="form-control" placeholder="Search"/>
+			<button id="btnSearchHere" type="button" class="btn btn-success">
+				<i class='bx bx-search-alt'></i>
+			</button>
 		</div>
 		<h1 class="text-center">Résultat de la Recherche</h1>
 		<div class="row">
