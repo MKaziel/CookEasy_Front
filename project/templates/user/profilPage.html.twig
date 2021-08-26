@@ -6,7 +6,15 @@
 	<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<meta name='viewport' content='width=device-width, initial-scale=1'>
-	<link href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' rel='stylesheet'>
+	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+        crossorigin="anonymous">
+        
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
 	<link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css' rel='stylesheet'>
 	<script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
 {% endblock %}
@@ -90,6 +98,149 @@ flag = flag1 && flag2 && flag3 && flag4 && flag5 && flag6;
 return flag;
 }
 	</script>
+
+	<script>
+		var baseUrl = "http://localhost:3000/"
+		
+        function alimentationProfile(elmnt = {}){
+            if(elmnt){
+                if(elmnt.nom && elmnt.prenom)
+                    document.getElementById("nomPrenom").value = `${elmnt.nom} ${elmnt.prenom}`
+                if(elmnt.email)
+                    document.getElementById("email").value = elmnt.email
+                if(elmnt.date_naissance)
+                    document.getElementById("anniv").value = elmnt.date_naissance
+            } else {
+                console.log("Aucune info");
+            }
+        }
+
+		function btnModifInfo(){
+			document.getElementById("nomPrenom").disabled? document.getElementById("nomPrenom").disabled = false : document.getElementById("nomPrenom").disabled = true
+			document.getElementById("email").disabled? document.getElementById("email").disabled = false : document.getElementById("email").disabled = true
+			document.getElementById("anniv").disabled? document.getElementById("anniv").disabled = false : document.getElementById("anniv").disabled = true
+			document.getElementById("btnModifInfo").textContent.includes("Modifier")?document.getElementById("btnModifInfo").textContent="Valider":document.getElementById("btnModifInfo").textContent="Modifier"
+		}
+
+		function sendNewInfoProfile(baseInfo = []){
+			let newInfo = []
+			let length = 0
+			if(`${baseInfo["nom"]} ${baseInfo["prenom"]}` != document.getElementById("nomPrenom").value){
+				var nomPrenom = document.getElementById("nomPrenom").value.split(" ")
+				newInfo["nom"] = nomPrenom.slice(0,-1).join(" ")
+				newInfo["prenom"] = nomPrenom[nomPrenom.length -1]
+				length += 2
+			}
+			if(baseInfo["email"] != document.getElementById("email").value){
+				newInfo["email"] = document.getElementById("email").value
+				length += 1
+			}
+			if(baseInfo["date_naissance"] != document.getElementById("anniv").value){
+				newInfo["date_naissance"] = document.getElementById("anniv").value
+				length += 1
+			}
+
+			if(newInfo && length > 0){
+				$.ajax({
+					url: baseUrl + "users/" + getCookie("login_cookeasy"),
+					headers:{
+						'token': getCookie("token_cookeasy")
+					},
+					type: "put",
+					data: {
+						nom: newInfo["nom"],
+						prenom: newInfo["prenom"],
+						email: newInfo["email"],
+						date_naissance: newInfo["date_naissance"],
+					},
+					success:(function(data){
+							alimentationProfile(data.data)
+					})
+				})
+			}
+
+			btnModifInfo()
+		}
+
+        $('document').ready(() => {
+			var baseInfo = []
+            
+			$.ajax({
+                url: baseUrl + "user/" + getCookie("login_cookeasy"),
+                headers:{
+                    'token': getCookie("token_cookeasy")
+                },
+                dataType: "json",
+                success: (function(data){
+                    elmnt = data.data
+                    console.log(elmnt)
+                    alimentationProfile(elmnt);
+                })
+            })
+
+			$.ajax({
+				dataType:"json",
+				url: "http://localhost:3000/post",
+				success: (function (data) {
+					console.log(data);
+					var body = document.getElementById("conteneur");
+					var posts = data
+			
+					for(var i=0; i<posts.length; i++){
+						let post = posts[i]
+						console.log(posts)
+						var div = document.createElement("div")
+						div.setAttribute("class", "card gedf-card")
+						div.innerHTML = `
+							<div class="card-header">
+								<div class="d-flex justify-content-between align-items-center">
+									<div class="d-flex justify-content-between align-items-center">
+										<div class="mr-2">
+											<img class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt="">
+										</div>
+										<div class="ml-2">
+											<div class="h5 m-0">${post.proprietaire}</div>
+											<div class="h7 text-muted">Miracles Lee Cross</div>
+										</div>
+									</div>
+								</div>
+
+							</div>
+							<div class="card-body">
+								<div class="text-muted h7 mb-2"> <i class="fa fa-clock-o"></i>10 min ago</div>
+								<p class="card-text">
+								${post.contenu}
+								</p>
+							</div>
+							<div class="card-footer">
+								<a href="#" class="card-link"><i class="fa fa-gittip"></i> Like</a>
+								<a href="#" class="card-link"><i class="fa fa-comment"></i> Comment</a>
+								<a href="#" class="card-link"><i class="fa fa-mail-forward"></i> Share</a>
+							</div>
+						`
+						body.appendChild(div)
+					}
+				})
+			})
+
+			$("#btnModifInfo").click(()=>{
+				var nomPrenom = document.getElementById("nomPrenom").value.split(" ")
+
+				
+				if(document.getElementById("btnModifInfo").textContent.includes("Valider")){
+					sendNewInfoProfile(baseInfo)
+				}
+				else if(document.getElementById("btnModifInfo").textContent.includes("Modifier")){
+					btnModifInfo()
+				}
+				
+				baseInfo["nom"] = nomPrenom.slice(0,-1).join(" ")
+				baseInfo["prenom"] = nomPrenom[nomPrenom.length -1]
+				baseInfo["email"] = document.getElementById("email").value
+				baseInfo["date_naissance"] = document.getElementById("anniv").value
+			})
+        })
+	</script>
 {% endblock %}
 
 {% block body %}
@@ -97,12 +248,13 @@ return flag;
 	<div>
 		<input type="button" name="changeFilter" value="Recettes"/>
 	</div>
-	<div class="container-fluid">
+	<div class="container-fluid gedf-wrapper">
 
 		<div class="row">
 			<div class="col-sm-1"></div>
 			<div name="filActus" class="col-sm-8">
 				<h2>Fil d'actualités du profil</h2>
+				<div id="conteneur" class="gedf-main"></div>
 			</div>
 			<div class="col-sm-2">
 				<div name="infosProfil" class="row">
@@ -113,22 +265,22 @@ return flag;
 								{# <div class="col-xl-7 col-lg-8 col-md-9 col-11 text-center"> #}
 
 								<div class="card">
-									<h5 class="text-center mb-4">Mes informations</h5>
+									<h3 class="text-center mb-4">Mes informations</h3>
 									<form class="form-card" onsubmit="event.preventDefault()">
 										<div class="row justify-content-between text-left">
 											<label class="form-control-label px-3">Nom / Prénom
 
 											</label>
-											<input type="text" id="" name="" placeholder="" onblur="" disabled>
+											<input type="text" id="nomPrenom" name="" placeholder="" onblur="" disabled>
 
 											<label class="form-control-label px-3">Email
 
 											</label>
-											<input type="text" id="" name="" placeholder="" onblur="" disabled>
+											<input type="text" id="email" name="" placeholder="" onblur="" disabled>
 											<label class="form-control-label px-3">Anniversaire
 
 											</label>
-											<input type="date" id="" name="" placeholder="" onblur="" disabled>
+											<input type="date" id="anniv" name="" placeholder="" onblur="" disabled>
 
 											<label class="form-control-label px-3">Nombre de Publications
 
@@ -143,12 +295,20 @@ return flag;
 											</select>
 
 										</form>
+										<button id="btnModifInfo">Modifier</button>
 									</div>
 									{# </div> #}
 								</div>
 							</div>
-							<div name="amis" class="row">
-								<h2>Mes amis</h2>
+							<div
+								class="row d-flex justify-content-center">
+								{# <div class="col-xl-7 col-lg-8 col-md-9 col-11 text-center"> #}
+
+								<div class="card">
+									<h3 class="text-center mb-4">Mes Amis</h3>
+									
+									
+								</div>
 							</div>
 						</div>
 

@@ -12,6 +12,19 @@ use App\Controller\ConnectionController as CC;
 
 class DefaultController extends AbstractController
 {
+
+    /**
+     * @Route("/", name="Default Accueil")
+     */
+    public function default_accueil(CC $cc){
+        if($cc->userConnected()){
+            return $this->render('page_accueil/accueil.html.twig', array());
+        } else {
+            return $this->redirectToRoute('User connection page');
+        }
+        
+    }
+
     /**
      * @Route("/accueil", name="Accueil")
      */

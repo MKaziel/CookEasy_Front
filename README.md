@@ -5,5 +5,8 @@ Front du projet de plateforme web CookEasy
 Dans le répertoire nommé "project" ce trouve un fichier ".env". 
 Vous devez, dans ce fichier, modifier la variable d'environnement IPV4 avec votre adresse IPV4 afin que le FRONT puisse dialoguer avec le l'API du BACK.
 
+# Lien vers le Trello
+https://trello.com/b/Khnjf3Uq/cookeasy
+
 # Lien vers le back
 https://github.com/MKaziel/CookEasy_Back
