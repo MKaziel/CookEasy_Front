@@ -92,10 +92,12 @@ $('.register-show').removeClass('show-log-panel');
 			</div>
 			<div class="register-show">
 				<h2>REGISTER</h2>
+				<form id="login-form" class="form" action="" method="post">
 				<input type="text" placeholder="Email">
 				<input type="password" placeholder="Password">
 				<input type="password" placeholder="Confirm Password">
-				<input type="button" value="Register">
+				</form>
+				<a href="{{ path('User connection page') }}"><input type="button" value="Register"></a>
 			</div>
 		</div>
 	</div>
